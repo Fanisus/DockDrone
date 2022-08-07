@@ -18,13 +18,36 @@ docker.ping((error, result) => {
 })
 
 const request = require('./api/request')
-request("localhost", 2375, "/containers/6b703301879e840dcfd2a1ab149bd5a83995f81d38d6702db3154abcc0d4a37b/logs", {
-    stdout: true, stderr: true, follow: true, timestamps: true, 
+// request("localhost", 2375, "/containers/208edde50876c2a8edbb49aaed2ed439eebbe4d56d7ec2d08171754487fe1015/logs", {
+//     stdout: true, stderr: true, follow: true, timestamps: true, 
+// }, "GET", res => {
+//     res.on('data', (data) => {
+//         console.log(data.toString())
+//     })
+// })
+
+request("localhost", 2375, "/containers/7c192f3b21947e152a3e0c3780e3a0a45ed512e73f9fdebd29e392f851bf8e37/archive", {
+    path: "/usr/src/apptest/"
 }, "GET", res => {
+    console.time("T")
+    let s = fs.createWriteStream('./Text.tar', {encoding: 'utf8'})
+    // let d = ""
     res.on('data', (data) => {
-        console.log(data.toString())
+        s.write(data.toString())
+        // d += data
+        // console.log(data.toString())
+    })
+    res.on('end', () => {
+        console.timeEnd("T")
+        console.log("Done")
+        s.close()
+        
     })
 })
+
+
+
+
 function calculateCPUPercentUnix(previousCPU, previousSystem, v) {
     v = JSON.parse(v.toString())
     let cpuPercent = 0.0
