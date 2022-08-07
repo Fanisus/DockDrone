@@ -1,0 +1,27 @@
+{
+  "name": "dockdrone",
+  "version": "1.0.0",
+  "description": "DockDrone is a server management tool. It exposes a cool user interface, Built with JavaScript.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Fanisus/DockDrone.git"
+  },
+  "keywords": [
+    "DockDrone"
+  ],
+  "author": "Fanisus",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/Fanisus/DockDrone/issues"
+  },
+  "homepage": "https://github.com/Fanisus/DockDrone#readme",
+  "dependencies": {
+    "dockerode": "^3.3.3",
+    "express": "^4.18.1",
+    "tar-fs": "^2.1.1"
+  }
+}
